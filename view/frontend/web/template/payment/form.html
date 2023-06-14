@@ -1,0 +1,73 @@
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="payment-method" data-bind="css: {'_active': (getCode() == isChecked())}">
+
+    <div class="payment-method-title field choice">
+        <input type="radio"
+               name="payment[method]"
+               class="radio"
+               data-bind="attr: {'id': getCode()}, value: getCode(), checked: isChecked, click: selectPaymentMethod, visible: isRadioButtonVisible()"/>
+        <label class="label" data-bind="attr: {'for': getCode()}">
+            <span data-bind="text: getTitle()"></span>
+        </label>
+    </div>
+    <span class="shape_shift_description" data-bind="html: getPaymentDescription()"></span>
+    <div class="payment-method-content fieldset">
+        <!-- ko foreach: getRegion('messages') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <div class="payment-method-billing-address">
+            <!-- ko foreach: $parent.getRegion(getBillingAddressFormName()) -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+        <!-- ko if: newErrorMessage().length > 0 -->
+        <div class="message notice">
+            <span><!-- ko text: newErrorMessage()--><!-- /ko --></span>
+        </div>
+        <!-- /ko -->
+        <div class="field required">
+            <label data-bind="attr: {for: getCode() + '_currency_code'}" class="label">
+                <span><!-- ko i18n: 'What currency do you want to pay?'--><!-- /ko --></span>
+            </label>
+
+            <div class="control">
+                <select name="payment[currency_code]"
+                        class="select"
+                        data-bind="
+                                  options: getAvailableCurrency(),
+                                  optionsValue: 'value',
+                                  optionsText: 'currency_code',
+                                  optionsCaption: $t('Select currency...'),
+                                  value: currencyCode">
+                </select>
+            </div>
+        </div>
+        <div class="field">
+            <label data-bind="attr: {for: getCode() + '_return_address'}" class="label">
+                <span><!-- ko i18n: 'Return wallet address (you will receive your funds back to this address in case of any issues or refund, must be same cryptocurrency which is used for order)'-->
+                    <!-- /ko --></span>
+            </label>
+            <div class="control">
+                <input type="text" name="payment[return_address]" class="input-text" data-bind="value: returnAddress"/>
+            </div>
+        </div>
+
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button class="action primary checkout"
+                        type="submit"
+                        data-bind="
+                        click: placeOrder,
+                        attr: {title: $t('Place Order')}
+                        ">
+                    <span data-bind="i18n: 'Place Order'"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

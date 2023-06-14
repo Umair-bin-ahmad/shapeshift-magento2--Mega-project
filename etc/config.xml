@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright: Copyright © 2017 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <shape_shift>
+                <active>0</active>
+                <debug>1</debug>
+                <model>ShapeShiftGatewayFacade</model>
+                <order_status>pending</order_status>
+                <title>Shape Shift</title>
+                <allowspecific>0</allowspecific>
+                <can_authorize>1</can_authorize>
+                <can_capture>1</can_capture>
+                <can_void>1</can_void>
+                <can_use_checkout>1</can_use_checkout>
+                <is_gateway>1</is_gateway>
+                <sort_order>1</sort_order>
+                <apikey>2106861f10516dabde38412e6568a11890605ccea018377daf8fa4378eeed12f33a7b73bda9ed23250fbbedf939e5101be80218746ac97edca6ab96516d92f73</apikey>
+                <sendamount>https://shapeshift.io/sendamount</sendamount>
+                <getcoins>https://shapeshift.io/getcoins</getcoins>
+                <txstatus>https://shapeshift.io/txStat/</txstatus>
+                <min_limit_price>0</min_limit_price>
+                <max_limit_price>1000</max_limit_price>
+                <description>ShapeShift cryptocurrency payment method</description>
+            </shape_shift>
+        </payment>
+    </default>
+</config>
